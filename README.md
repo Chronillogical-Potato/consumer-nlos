@@ -131,25 +131,11 @@ source ~/venvs/nlos/bin/activate
 Install the runtime dependencies:
 
 ```bash
-pip install \
-    numpy \
-    torch \
-    pyqtgraph \
-    PyQt6 \
-    pyserial \
-    matplotlib \
-    scipy \
-    tqdm
+pip install -r requirements.txt
 ```
 
 The Qt binding is needed by `pyqtgraph` for the live dashboard — `PyQt6` is
 the recommended choice; `PySide6` also works.
-
-After install, verify imports:
-
-```bash
-python -c "import numpy, torch, pyqtgraph, serial, matplotlib, scipy, tqdm; print('ok')"
-```
 
 
 ## 5. Calibrate the wall
@@ -160,23 +146,9 @@ Point the SPAD at the planar wall, plug it in, then:
 python calibrate.py
 ```
 
-What happens:
-
-1. The sensor captures ~2 s of stationary frames.
-2. A plane is fit to the averaged point cloud → camera height `cam_z`.
-3. Per-pixel 1B peak bin indices (`bin_0`) are recorded.
-4. `logs/pt_cloud/calibration.npz` is saved with `pt_cloud`, `cam_z`, `bin_0`.
-5. Diagnostic plots are written to `logs/pt_cloud/pt_cloud.png` and
-   `logs/pt_cloud/histogram.png`. Open them and sanity-check:
-   - Point cloud should look like a flat plane.
-   - `cam_z` (in the plot title) should match your real-world wall distance.
-   - Histogram heatmap should show a clear diagonal bright stripe; the green
-     `bin_0` line should sit on top of it.
-
-If `cam_z` is way off or the histogram is noise, recheck the wall alignment
-or adjust `start_bin_calibrate` in `config.py`.
-
-Press Ctrl-C to exit when prompted.
+This captures the wall point cloud and saves it to `logs/pt_cloud/`. As a
+sanity check, confirm the reported distance to the wall roughly matches the
+real-world distance.
 
 
 ## 6. Run live tracking

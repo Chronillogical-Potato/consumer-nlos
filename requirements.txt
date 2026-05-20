@@ -1,0 +1,8 @@
+numpy
+torch
+pyqtgraph
+PyQt6
+pyserial
+matplotlib
+scipy
+tqdm
