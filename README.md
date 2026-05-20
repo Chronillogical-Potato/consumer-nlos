@@ -310,3 +310,19 @@ or absorb too many photons. Background ambient light isn't a major issue
 indoors at typical office levels — the histogram subtraction step in
 `track.py` handles it — but direct sunlight on the wall will saturate the
 sensor.
+
+
+## Citation
+
+If you use this code, we'd appreciate it if you could cite our paper:
+
+```bibtex
+@article{somasundaram2026imaging,
+  title   = {Imaging hidden objects with consumer LiDAR via motion induced sampling},
+  author  = {Somasundaram, Siddharth and Young, Aaron and Dave, Akshat and Pediredla, Adithya and Raskar, Ramesh},
+  journal = {Nature},
+  year    = {2026},
+  doi     = {10.1038/s41586-026-10502-x},
+  url     = {https://www.nature.com/articles/s41586-026-10502-x}
+}
+```
