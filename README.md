@@ -1,4 +1,4 @@
-# NLOS Particle Filter Demo
+# Plug-and-Play Consumer Non-Line-of-Sight Imaging
 
 Self-contained, plug-and-play demo of non-line-of-sight (NLOS) tracking with
 a single time-of-flight SPAD. Captures per-pixel timing histograms from a
