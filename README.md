@@ -112,7 +112,27 @@ If auto-detection fails, pass the mount path explicitly:
 ```bash
 python flash.py /Volumes/NOD_F401RE
 ```
+Error on Apple M3 Pro: If you run "python flash.py" and get the following error:
+```bash
+make: *** No rule to make target `objects.list', needed by `cc_hardware_vl53l8ch_driver.elf'. Stop.
 
+```
+Then do the following steps:
+```bash
+cd ~/consumer-nlos/firmware/vl53l8ch/build
+
+for d in Core/Src Core/Startup Drivers/STM32F4xx_HAL_Driver/Src Platform VL53LMZ_ULD_API/src; do
+  sed -n '/OBJS += \\/,/^$/p' "$d/subdir.mk"
+done | grep -oE '\./[A-Za-z0-9_/.-]+\.o' > objects.list
+
+wc -l < objects.list
+
+```
+You should see 32 printed. Then re-run the flasher:
+```bash
+cd ~/consumer-nlos
+python flash.py
+```
 
 ## 4. Python environment
 
